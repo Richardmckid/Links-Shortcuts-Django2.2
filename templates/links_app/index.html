@@ -1,0 +1,339 @@
+{% extends 'base.html' %} {% load humanize %} {% block content %}
+<div class="my_body_content">
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="{% url 'logout' %}">Logout</a></li>
+
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            <!-- /.container-fluid -->
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+
+            <!-- Default box -->
+            <div class="card card-outline card-danger">
+                <div class="card-header">
+                    <h3 class="card-title">NEWS</h3>
+
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                <i class="fas fa-minus"></i>
+              </button>
+                        <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
+                <i class="fas fa-times"></i>
+              </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <button type="button" class="btn btn-danger mr-auto mb-2" data-toggle="modal" data-target="#modal-default"><i class="fas fa-plus"> </i> Add New</button>
+                    <hr class="btn-danger">
+                    <div class="row">
+                        {% if news %} {% for link in news %}
+                        <div class="col-md-4">
+                            <div class="card card card-danger">
+                                <div class="card-header">
+                                    <h3 class="card-title">{{ link.site_name }}</h3>
+
+                                    <div class="card-tools">
+                                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+                                        <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+                                    </div>
+                                    <!-- /.card-tools -->
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                    <div class="row py-2 text-danger">
+                                        <div class="col-6">
+                                            <i class="fas fa-link"></i>
+                                            <a href="{{ link.site_url }}" target="blank">Visit the site</a>
+                                        </div>
+                                    </div>
+                                    <div class="row py-2 text-danger">
+                                        <div class="col-6">
+                                            <i class="fas fa-user"></i> {{ link.user }}
+                                        </div>
+                                    </div>
+                                    <div class="row text-danger pb-2">
+                                        <div class="col-12">
+                                            <i class="fas fa-clock"></i> {{ link.created_at | timesince }} ago
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                            <!-- /.card -->
+                        </div>
+                        {% endfor %} {% else %}
+                        <div class="col-md-12">
+                            No Links Available, Please Add Links
+                        </div>
+                        {% endif %}
+                        <!-- /.col -->
+                    </div>
+                </div>
+
+                <!-- /.card-body -->
+
+                <!-- /.card-footer-->
+            </div>
+            <!-- /.card -->
+
+            <div class="card card-outline card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">MOVIES</h3>
+
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                <i class="fas fa-minus"></i>
+              </button>
+                        <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
+                <i class="fas fa-times"></i>
+              </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <button type="button" class="btn btn-primary mr-auto mb-2" data-toggle="modal" data-target="#modal-default"><i class="fas fa-plus"> </i> Add New</button>
+                    <hr class="btn-primary">
+                    <div class="row">
+                        {% if movies %} {% for link in movies %}
+                        <div class="col-md-4">
+                            <div class="card card-primary">
+                                <div class="card-header">
+                                    <h3 class="card-title">{{ link.site_name }}</h3>
+
+                                    <div class="card-tools">
+                                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+                                        <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+                                    </div>
+                                    <!-- /.card-tools -->
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                    <div class="row py-2 text-primary">
+                                        <div class="col-6">
+                                            <i class="fas fa-link"></i>
+                                            <a href="{{ link.site_url }}" target="blank">Visit the site</a>
+                                        </div>
+                                    </div>
+                                    <div class="row py-2 text-primary">
+                                        <div class="col-6">
+                                            <i class="fas fa-user"></i> {{ link.user }}
+                                        </div>
+                                    </div>
+                                    <div class="row text-primary pb-2">
+                                        <div class="col-12">
+                                            <i class="fas fa-clock"></i> {{ link.created_at | timesince }} ago
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                            <!-- /.card -->
+                        </div>
+                        {% endfor %} {% else %}
+                        <div class="col-md-12">
+                            No Links Available, Please Add Links
+                        </div>
+                        {% endif %}
+                        <!-- /.col -->
+                    </div>
+                </div>
+
+                <!-- /.card-body -->
+
+            </div>
+
+            <div class="card card-outline card-success">
+                <div class="card-header">
+                    <h3 class="card-title">EDUCATION/E-LEARNING</h3>
+
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                <i class="fas fa-minus"></i>
+              </button>
+                        <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
+                <i class="fas fa-times"></i>
+              </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <button type="button" class="btn btn-success mr-auto mb-2" data-toggle="modal" data-target="#modal-default"><i class="fas fa-plus"> </i> Add New</button>
+                    <hr class="btn-success">
+                    <div class="row">
+                        {% if education %} {% for link in education %}
+                        <div class="col-md-4">
+                            <div class="card card card-success">
+                                <div class="card-header">
+                                    <h3 class="card-title">{{ link.site_name }}</h3>
+
+                                    <div class="card-tools">
+                                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+                                        <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+                                    </div>
+                                    <!-- /.card-tools -->
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                    <div class="row py-2 text-success">
+                                        <div class="col-6">
+                                            <i class="fas fa-link"></i>
+                                            <a href="{{ link.site_url }}" target="blank">Visit the site</a>
+                                        </div>
+                                    </div>
+                                    <div class="row py-2 text-success">
+                                        <div class="col-6">
+                                            <i class="fas fa-user"></i> {{ link.user }}
+                                        </div>
+                                    </div>
+                                    <div class="row text-success pb-2">
+                                        <div class="col-12">
+                                            <i class="fas fa-clock"></i> {{ link.created_at | timesince }} ago
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                            <!-- /.card -->
+                        </div>
+                        {% endfor %} {% else %}
+                        <div class="col-md-12">
+                            No Links Available, Please Add Links
+                        </div>
+                        {% endif %}
+                        <!-- /.col -->
+                    </div>
+                </div>
+
+                <!-- /.card-body -->
+
+            </div>
+
+
+            <div class="card card-outline card-warning">
+                <div class="card-header">
+                    <h3 class="card-title">MUSIC</h3>
+
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                <i class="fas fa-minus"></i>
+              </button>
+                        <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
+                <i class="fas fa-times"></i>
+              </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <button type="button" class="btn btn-warning mr-auto mb-2" data-toggle="modal" data-target="#modal-default"><i class="fas fa-plus"> </i> Add New</button>
+                    <hr class="btn-warning">
+                    <div class="row">
+                        {% if music %} {% for link in music %}
+                        <div class="col-md-4">
+                            <div class="card card card-warning">
+                                <div class="card-header">
+                                    <h3 class="card-title">{{ link.site_name }}</h3>
+
+                                    <div class="card-tools">
+                                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+                                        <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+                                    </div>
+                                    <!-- /.card-tools -->
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                    <div class="row py-2 text-warning">
+                                        <div class="col-6">
+                                            <i class="fas fa-link"></i>
+                                            <a href="{{ link.site_url }}" target="blank">Visit the site</a>
+                                        </div>
+                                    </div>
+                                    <div class="row py-2 text-warning">
+                                        <div class="col-6">
+                                            <i class="fas fa-user"></i> {{ link.user }}
+                                        </div>
+                                    </div>
+                                    <div class="row text-warning pb-2">
+                                        <div class="col-12">
+                                            <i class="fas fa-clock"></i> {{ link.created_at | timesince }} ago
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                            <!-- /.card -->
+                        </div>
+                        {% endfor %} {% else %}
+                        <div class="col-md-12">
+                            No Links Available, Please Add Links
+                        </div>
+                        {% endif %}
+                        <!-- /.col -->
+                    </div>
+                </div>
+
+                <!-- /.card-body -->
+
+                <!-- /.card-footer-->
+            </div>
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <div class="modal fade" id="modal-default">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Add New Link</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span> </button>
+                </div>
+                <form action="#" method="post">
+                    {% csrf_token %}
+                    <div class="modal-body">
+
+                        <div class="form-group">
+                            <label for="sitename">Site/Page Name</label>
+                            <div class="input-group">
+                                <input type="text" name="sitename" id="sitename" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="siteurl">URL(Link)</label>
+                                <input type="url" name="siteurl" id="siteurl" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="categories">Category</label>
+                                <select name="category" class="form-control" id="categories">
+                                    <option value="news">News</option>
+                                    <option value="education">Education</option>
+                                    <option value="music">Music</option>
+                                    <option value="movies">Movies</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer justify-content-between">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+</div>
+{% endblock %}
